@@ -1,0 +1,27 @@
+html {
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+a {
+    transition: color .15s ease-in-out, background-color .15s ease-in-out;
+}
+
+p {
+    margin-bottom: 0.75rem;
+}
+
+pre {
+    font-size: 0.95rem;
+    line-height: 1.5rem;
+    background: #FAFAFA;
+    padding: 1rem 1.25rem;
+    overflow-x: auto;
+}

@@ -1,0 +1,26 @@
+.card:not(.card-flat) {
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    border: none;
+    border-radius: 0.25rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05), 0 0 1px rgba(0, 0, 0, 0.1);
+}
+
+.card-header, .list-group-item {
+    border-color: rgba(0, 0, 0, 0.03);
+}
+
+.card-header {
+    font-weight: bold;
+}
+
+.card-body {
+    pre {
+        width: 0;
+        min-width: 100%;
+    }
+
+    > :last-child {
+        margin-bottom: 0;
+    }
+}

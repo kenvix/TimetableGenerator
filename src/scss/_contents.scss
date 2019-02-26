@@ -1,0 +1,71 @@
+.container-main {
+    margin-top: 3rem;
+}
+
+.ajax-info {
+    display: none;
+}
+
+#skin_container_col {
+    max-width: 400px;
+}
+
+#skin_container {
+    height: 0;
+    overflow: hidden;
+    padding-top: 150%;
+    position: relative;
+
+    canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+
+.doc-icon {
+    color: #fff;
+    background: #007bff;
+    border-radius: 1.6rem;
+
+    svg {
+        width: 1.6rem;
+        height: 1.6rem;
+        margin: 0.8rem;
+    }
+}
+
+.faq-list {
+    p {
+        margin-bottom: 0;
+    }
+
+    ol > li {
+        margin-top: 0.5em;
+    }
+}
+
+.markdown-body {
+    font-size: 1rem;
+
+    p {
+        margin-bottom: 0.5em;
+    }
+
+    code, pre {
+        font-family: $font-family-monospace;
+    }
+}
+
+.footer {
+    margin-top: 3rem;
+    padding: 3rem 1.5rem;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05), 0 0 1px rgba(0, 0, 0, 0.1);
+
+    p {
+        margin-bottom: 0.5em;
+    }
+}

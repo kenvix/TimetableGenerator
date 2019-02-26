@@ -1,0 +1,35 @@
+{
+  "name": "timetable-generator",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/kenvix/Timetable-Generator",
+  "author": "Kenvix <i@kenvix.com>",
+  "private": true,
+  "scripts": {
+    "_development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "_watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "_production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+    "dev": "yarn run _development && yarn run page",
+    "page": "cross-env NODE_ENV=production src/utils/htmlrender.js",
+    "prod": "yarn run _production && yarn run page"
+  },
+  "dependencies": {
+    "bootstrap": "^4.2.1",
+    "feather-icons": "^4.10.0",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.6"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.2.3",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/polyfill": "^7.2.5",
+    "@babel/preset-env": "^7.2.3",
+    "cross-env": "^5.2.0",
+    "ejs": "^2.6.1",
+    "laravel-mix": "^4.0.12",
+    "resolve-url-loader": "2.3.1",
+    "sass": "^1.15.2",
+    "sass-loader": "^7.1.0",
+    "vue-template-compiler": "^2.5.21"
+  }
+}

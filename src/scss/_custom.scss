@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'cjk-fallback';
+    src: local('Noto Sans CJK SC'), local('Microsoft YaHei'), local('PingFang SC');
+    unicode-range: U+3000-30FF, U+FF00-FFEF, U+4E00-9FAF;
+}
+
+$font-family-emoji: "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+$font-family-sans-serif: "Ubuntu", "cjk-fallback", sans-serif, $font-family-emoji;
+$font-family-monospace: "cjk-fallback", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace, $font-family-emoji;
+
+$body-bg: #f7f7f7;
+$body-color: #4a4a4a;
