@@ -10,7 +10,7 @@
     "_watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "_production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "dev": "yarn run _development && yarn run page",
-    "page": "cross-env NODE_ENV=production src/utils/htmlrender.js",
+    "page": "node --experimental-modules src/utils/htmlrender.mjs",
     "prod": "yarn run _production && yarn run page"
   },
   "dependencies": {

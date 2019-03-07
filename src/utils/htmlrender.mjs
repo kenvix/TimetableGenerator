@@ -1,16 +1,18 @@
-#!/usr/bin/env node
+'use strict';
 
-var ejs = require("ejs");
-var fs = require("fs");
+import getRenderInnerFunctions from "./functions";
+import ejs from "ejs";
+import fs from "fs";
 
-const basrSrcPath = "src/page/";
-const basrHtmlPath = "Public/";
+const baseSrcPath = "src/page/";
+const baseHtmlPath = "Public/";
+
 
 function renderFile(file, pageTitle) {
-    var inputFilePath = basrSrcPath + file + ".ejs";
-    var outputFilePath = basrHtmlPath + file + ".html";
+    const inputFilePath = baseSrcPath + file + ".ejs";
+    const outputFilePath = baseHtmlPath + file + ".html";
 
-    ejs.renderFile(inputFilePath, { title: pageTitle }, {}, (err, str) => {
+    ejs.renderFile(inputFilePath, Object.assign({ title: pageTitle }, getRenderInnerFunctions()), {}, (err, str) => {
         if (err)
             throw err;
         fs.access(outputFilePath, fs.constants.F_OK, (err) => {
