@@ -10,6 +10,15 @@ export function goToPage(targetPage) {
     return true;
 }
 
+export function createAndDownloadFile(fileName, content) {
+    const aTag = document.createElement('a');
+    const blob = new Blob([content]);
+    aTag.download = fileName;
+    aTag.href = URL.createObjectURL(blob);
+    aTag.click();
+    URL.revokeObjectURL(blob);
+}
+
 export function showModal(text, title, size) {
     size = size || 'md';
 

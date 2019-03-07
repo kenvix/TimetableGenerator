@@ -1,18 +1,20 @@
 <%- include("partial/header") %>
+
 <div class="card">
 
     <div class="card-header"><%= title %></div>
     <div class="card-body" id="aboutInfo">
+        <input type="file" id="class-import-file" accept="application/json" style="display: none"/>
         <button type="button" class="btn btn-info" id="class-import">导入已导出的课程</button>
         <br/><br/>
 
-        <form>
+        <form id="class-form">
             <div class="form-group">
-                <input type="text" class="form-control" name="name" required="" maxlength="20" placeholder="姓名">
+                <input type="text" class="form-control" id="user-name" name="name" required="" maxlength="20" placeholder="姓名">
             </div>
 
             <div class="form-group">
-                <input type="text" class="form-control" name="stuid" required="" maxlength="20" placeholder="学号">
+                <input type="text" class="form-control" id="user-id" name="stuid" required="" maxlength="20" placeholder="学号">
             </div>
 
             <div class="table-responsive">
@@ -37,7 +39,7 @@
 
                                 <% for (var classDay = 0; classDay < 7; classDay++) { %>
                                     <td>
-                                        <button type="button" id="class-<%= classDay %>-<%= classTime %>" data-time="<%= classTime %>" data-time-readable="<%= getHumanReadableClassTime(classTime) %>" data-day="<%= classDay %>" class="btn btn-success" onclick="signRequest(this)" style="width: 100%"> + </button>
+                                        <button type="button" id="class-<%= classDay %>-<%= classTime %>" data-time="<%= classTime %>" data-time-readable="<%= getHumanReadableClassTime(classTime) %>" data-day="<%= classDay %>" class="btn btn-dark class-button" style="width: 100%"> + </button>
                                     </td>
                                 <% } %>
                             </tr>
@@ -47,6 +49,22 @@
             </div>
 
             <input type="submit" class="btn btn-primary" value="导出课程文件" />
+
+            <br/><br/>
+
+            <div class="card card-flat mb-3">
+                <div class="card-body">
+                    <p><b>使用说明</b></p>
+
+                    <ul>
+                        <li>此工具用于登记你的课表并依此生成值日表，请务必正确、完整地填写所有课表。包括自习课。</li>
+                        <li>登记完成后，请点击 "导出课程文件" 导出课表 JSON 文件，并保证命名为 <b>学号-姓名.json</b></li>
+                        <li>然后，将导出的课表 Pull Request 到指定仓库</li>
+                        <li>以后若要编辑课表，可以先点击 "导入已导出的课程" 来导入之前导出的课表</li>
+                    </ul>
+                </div>
+            </div>
+
         </form>
     </div>
 </div>
@@ -64,8 +82,12 @@
                 </div>
 
                 <div class="modal-body">
+                    <input type="hidden" name="class_time" id="class-time">
+                    <input type="hidden" name="class_day" id="class-day">
+
+
                     <div class="form-group">
-                        <input type="text" class="form-control" name="class_name" required="" maxlength="20" placeholder="课程名，例如 '高等数学 A (2)'">
+                        <input type="text" class="form-control" id="class-name" name="class_name" required="" maxlength="20" placeholder="课程名，例如 '高等数学 A (2)'">
                     </div>
 
                     <div class="form-group">
@@ -88,57 +110,12 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" id="application-decline-submit">保存课程</button>
+                    <button type="button" class="btn btn-secondary mr-auto" id="class-delete" style="float: left">删除课程</button>
+                    <button type="submit" class="btn btn-primary" id="class-submit">保存课程</button>
                 </div>
             </div>
         </div>
     </div>
 </form>
-
-<script type="text/javascript">
-    let classes = {};
-
-    function reloadClasses() {
-        
-    }
-
-    function signRequest(target) {
-        $("#sign-title-day").html($(target).attr("data-day"));
-        $("#sign-title-time").html($(target).attr("data-time-readable"));
-
-        $('#sign-modal').modal('show');
-    }
-
-    $("#sign-form").submit(e => {
-        let weekList = [];
-        const inputWeek = $("#class-week").val().replace("~", "-").replace(" ", "").split(",");
-
-        console.info("Committed class: " + $("#class-week").val());
-
-        inputWeek.forEach(element => {
-            if (element.indexOf("-") > 0) {
-                const rangeBorder = element.split("-");
-
-                if (rangeBorder.length >= 2 && !isNaN(rangeBorder[0]) && !isNaN(rangeBorder[1])) {
-                    for (let i = parseInt(rangeBorder[0]); i <= parseInt(rangeBorder[1]); i++) {
-                        if (weekList.indexOf(i) < 0)
-                            weekList.push(i);
-                    }
-                }
-
-            } else {
-                if (!isNaN(element)) {
-                    let elementAsNumber = parseInt(element);
-
-                    if (weekList.indexOf(elementAsNumber) < 0)
-                        weekList.push(elementAsNumber);
-                }
-            }
-        });
-
-        console.log(weekList);
-        return false;
-    });
-</script>
 
 <%- include("partial/footer") %>
